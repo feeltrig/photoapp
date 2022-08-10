@@ -1,4 +1,8 @@
-// colors
+// main content hieght
+$footerHeight: 3rem;
+$headerHeight: 3rem;
+$mainContentHeight: calc(100vh - $footerHeight - $headerHeight);
+
 
 // primary
 $Moderateblue: hsl(238, 40%, 52%);

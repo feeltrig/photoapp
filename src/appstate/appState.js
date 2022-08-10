@@ -7,6 +7,7 @@ export const appState = {
   email: null,
   mobile: null,
   password: null,
+  allowAccess: false,
 };
 
 // APP CREATE CONTEXT

@@ -1,0 +1,21 @@
+.UserProfile{
+
+    height: $mainContentHeight;
+    @include flexcenter();
+
+
+    h3,p{
+        @include resetmp();
+    }
+
+    p{
+        margin-bottom: 1rem;
+    }
+
+    // user info
+    .userInfo{
+        display: flex;
+        flex-flow: column;
+        gap: 0;
+    }
+}

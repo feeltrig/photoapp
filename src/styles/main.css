@@ -76,4 +76,78 @@ footer .footercomponent:nth-child(3) {
   margin-left: auto;
 }
 
+.mainContent {
+  height: calc(100vh - 3rem - 3rem);
+}
+
+.register {
+  height: 100%;
+  border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background: rgb(21, 21, 21);
+  color: white;
+}
+.register h1 {
+  text-align: center;
+}
+.register form {
+  display: flex;
+  width: 50%;
+  flex-flow: column;
+  background: rgb(39, 39, 39);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.237);
+}
+.register form label {
+  margin-bottom: 0.25rem;
+}
+.register form p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+  color: yellow;
+  margin-top: 0.25rem;
+}
+.register form input {
+  border: none;
+  height: 2rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+.register form button {
+  border: none;
+  width: 10rem;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  border-radius: 0.5rem;
+  border-radius: 0.25rem;
+  background: rgb(69, 69, 69);
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: bold;
+}
+
+.UserProfile {
+  height: calc(100vh - 3rem - 3rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.UserProfile h3, .UserProfile p {
+  margin: 0;
+  padding: 0;
+}
+.UserProfile p {
+  margin-bottom: 1rem;
+}
+.UserProfile .userInfo {
+  display: flex;
+  flex-flow: column;
+  gap: 0;
+}
+
 /*# sourceMappingURL=main.css.map */

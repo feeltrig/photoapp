@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useMainApp } from '../appstate/appState';
+
+// CLEAN MAIN APP STATE
+import { appState } from '../appstate/appState';
 
 const Header = () => {
   // INIT
   // main app state
+  // navigate
   const { mainappstate, setmainappstate } = useMainApp();
   const [menuOpen, setmenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   // HANDLE MENUBAR
   const handleMenu = () => {
@@ -18,10 +23,15 @@ const Header = () => {
 
   const menuobject = [
     { path: '/user/homepage', title: 'Home' },
-    { path: '/user/profile', title: 'Profile' },
+    { path: '/user/userprofile', title: 'Profile' },
     { path: '/user/contactus', title: 'Contact Us' },
-    { path: '/user/logout', title: 'Logout' },
   ];
+
+  // LOGOUT OUT
+  const handleLogout = () => {
+    setmainappstate(appState);
+    navigate('/login');
+  };
   return (
     <header>
       <nav>
@@ -37,6 +47,9 @@ const Header = () => {
                 </div>
               );
             })}
+            <div className="menu-item" onClick={handleLogout}>
+              Logout
+            </div>
           </div>
         </div>
       </nav>

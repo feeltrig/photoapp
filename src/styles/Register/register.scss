@@ -1,0 +1,62 @@
+.register{
+    height: 100%;
+    border: 5px solid black;
+
+    @include flexcenter();
+
+    flex-flow: column;
+    background: rgb(21, 21, 21);
+    color: white;
+
+    // title
+    h1{
+        text-align: center;
+    }
+
+
+    form{
+        display: flex;
+        width: 50%;
+        flex-flow: column;
+        background: rgb(39, 39, 39);
+        padding: 1rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.237);
+
+        label{
+            margin-bottom: 0.25rem;
+        }
+
+        p{
+            @include resetmp();
+            margin-bottom: 1rem;
+            color: yellow;
+            margin-top: 0.25rem;
+
+
+        }
+
+        input{
+            border: none;
+            height: 2rem;
+            padding: 1rem;
+            border-radius: 0.25rem;
+
+        }
+
+        button{
+            border: none;
+            width: 10rem;
+            padding-inline: 0.5rem;
+            padding-block: 0.5rem;
+            border-radius: 0.5rem;
+            border-radius: 0.25rem;
+            background: rgb(69, 69, 69);
+            color: white;
+            border-radius: 0.25rem;
+            font-weight: bold;
+
+
+        }
+    }
+}
