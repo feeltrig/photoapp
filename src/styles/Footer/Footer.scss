@@ -1,16 +1,15 @@
-footer{
-    position: absolute;
-    width: 100%;
-    border: 5px solid black;
-    bottom: 0;
-    height: $footerHeight;
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: $footerHeight;
 
-    display: flex;
-    padding-inline: 10rem;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  padding-inline: 10rem;
+  align-items: center;
+  gap: 1rem;
 
-    .footercomponent:nth-child(3){
-        margin-left: auto;
-    }
+  .footercomponent:nth-child(3) {
+    margin-left: auto;
+  }
 }

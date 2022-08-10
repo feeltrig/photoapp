@@ -8,3 +8,21 @@
 @import './MainContent/mainContent.scss';
 @import './Register/register.scss';
 @import './Pages/UserProfile/UserProfile.scss';
+@import './LoginPage/loginPage.scss';
+
+// global styles
+
+.btn{
+        border: none;
+        width: 10rem;
+        padding-inline: 0.5rem;
+        padding-block: 0.5rem;
+        border-radius: 0.5rem;
+        border-radius: 0.25rem;
+        background: rgb(69, 69, 69);
+        color: white;
+        border-radius: 0.25rem;
+        font-weight: bold;
+
+
+}

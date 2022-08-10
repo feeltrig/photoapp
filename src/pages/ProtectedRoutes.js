@@ -39,7 +39,7 @@ const ProtectedRoutes = () => {
       </Routes>
     );
   } else {
-    return ErrorPage();
+    return <ErrorPage />;
   }
 
   return null;

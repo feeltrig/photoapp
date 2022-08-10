@@ -31,13 +31,13 @@ const Register = () => {
     console.log(data);
 
     setmainappstate(prev => {
+      // save state locally
+      localStorage.setItem(
+        'userProfile',
+        JSON.stringify({ ...prev, ...data, allowAcces: true })
+      );
       return { ...prev, ...data, allowAcces: true };
     });
-
-    localStorage.setItem(
-      'userProfile',
-      JSON.stringify({ ...data, allowAcces: true })
-    );
   };
 
   return (

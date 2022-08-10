@@ -1,21 +1,59 @@
-.UserProfile{
+.UserProfile {
+  height: $mainContentHeight;
+  @include flexcenter();
 
-    height: $mainContentHeight;
-    @include flexcenter();
+  .profileCard {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    padding: 2rem;
+    justify-content: stretch;
+    box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.123);
 
-
-    h3,p{
-        @include resetmp();
+    .profilePhoto > img {
+      width: 20rem;
+      height: auto;
+      aspect-ratio: 16/9;
     }
 
-    p{
-        margin-bottom: 1rem;
+    .profilePhoto {
+      display: flex;
+      flex-flow: row;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  h3,
+  p {
+    @include resetmp();
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  // user info
+  .userInfo {
+    display: flex;
+    flex-flow: column;
+    gap: 0;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
     }
 
-    // user info
-    .userInfo{
-        display: flex;
-        flex-flow: column;
-        gap: 0;
+    label {
+      cursor: pointer;
+      color: white;
+      background: #000;
+      padding: 1rem;
+      font-weight: 600;
+      bottom: 0;
     }
+  }
 }

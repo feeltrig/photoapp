@@ -8,6 +8,7 @@ export const appState = {
   mobile: null,
   password: null,
   allowAccess: false,
+  profilePhoto: null,
 };
 
 // APP CREATE CONTEXT

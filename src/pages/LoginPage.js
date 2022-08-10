@@ -8,7 +8,9 @@ const LoginPage = () => {
   // navigate
   // main app state
   const cleanLoginProfile = { userName: '', password: '' };
+
   const [userProfile, setUserProfile] = useState(cleanLoginProfile);
+
   const navigate = useNavigate();
   const { setmainappstate } = useMainApp();
 
@@ -41,30 +43,57 @@ const LoginPage = () => {
   };
 
   // HANDLE LOGIN
-  const handleLogin = () => {
+  const handleLogin = e => {
+    e.preventDefault();
+
+    // get local profile and parse it
     const savedUserProfile = localStorage.getItem('userProfile');
+
     if (savedUserProfile) {
+      const parsedProfile = JSON.parse(savedUserProfile);
       if (
-        savedUserProfile.userName == userProfile.userName &&
-        savedUserProfile.password == userProfile.password
+        parsedProfile.userName == userProfile.userName &&
+        parsedProfile.password == userProfile.password
       ) {
+        alert('Login succesfull');
         setmainappstate(prev => {
           return { ...prev, allowAccess: true };
         });
 
         setUserProfile(cleanLoginProfile);
+        navigate('user/homepage');
+      } else {
+        alert('Please input corrent info');
       }
+    } else {
+      alert('Please input corrent info');
     }
+
+    // cleaner
+    setUserProfile(cleanLoginProfile);
   };
 
   return (
-    <div className="loginPage">
-      <div className="loginModal">
-        <form onSubmit={handleLogin}>
-          <label htmlFor="userName">Username</label>
-          <input type="text" name="userName" onChange={handleInput} />
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" onChange={handleInput} />
+    <div className="loginPage register">
+      <form onSubmit={handleLogin}>
+        {/* username */}
+        <label htmlFor="userName">Username</label>
+        <input
+          type="text"
+          name="userName"
+          value={userProfile.userName}
+          onChange={handleInput}
+        />
+
+        {/* password */}
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={userProfile.password}
+          onChange={handleInput}
+        />
+        <div className="buttonContainer">
           <button type="submit">Login</button>
           <button
             type="button"
@@ -74,8 +103,8 @@ const LoginPage = () => {
           >
             Register
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
