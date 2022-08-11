@@ -1,0 +1,12 @@
+.ErrorPage {
+  min-height: $mainContentHeight;
+  background: $black1;
+  color: white;
+
+  @include flexcenter();
+  gap: 2rem;
+
+  h1 {
+    @include resetmp();
+  }
+}

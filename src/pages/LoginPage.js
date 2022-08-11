@@ -26,8 +26,6 @@ const LoginPage = () => {
     const name = e.target.name;
     const targetvalue = e.target.value;
 
-    console.log(userProfile);
-
     if (name == 'userName') {
       setUserProfile(prev => {
         return { ...prev, userName: targetvalue };
@@ -93,9 +91,12 @@ const LoginPage = () => {
           onChange={handleInput}
         />
         <div className="buttonContainer">
-          <button type="submit">Login</button>
+          <button type="submit" className="btn">
+            Login
+          </button>
           <button
             type="button"
+            className="btn"
             onClick={() => {
               navigate('/register');
             }}

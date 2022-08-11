@@ -7,7 +7,7 @@ const ErrorPage = () => {
 
   return (
     <div className="ErrorPage">
-      <h3>Something went wrong</h3>
+      <h1>Something went wrong</h1>
       <button
         className="btn"
         type="button"
@@ -15,7 +15,7 @@ const ErrorPage = () => {
           navigate('/');
         }}
       >
-        Go back
+        Go Back
       </button>
     </div>
   );

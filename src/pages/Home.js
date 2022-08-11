@@ -98,14 +98,12 @@ const Home = () => {
       const filtered = tempcopy.filter(objs => {
         return objs.id == searchedQuery;
       });
-      console.log(filtered);
       handlePagination(filtered, 20);
       return;
     } else if (cond3) {
       const filtered = tempcopy.filter(objs => {
         return objs.albumId == searchedQuery;
       });
-      console.log(filtered);
 
       handlePagination(filtered, 20);
       return;

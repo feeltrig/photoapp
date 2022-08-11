@@ -29,8 +29,6 @@ const Header = () => {
     settimeOfDay(getTimeOfDay());
   }, []);
 
-  console.log(mainappstate.profilePhoto);
-
   // HANDLE MENUBAR
   const handleMenu = () => {
     setmenuOpen(prev => {

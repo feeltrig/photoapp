@@ -16,21 +16,24 @@ const schema = yup.object().shape({
 
 const ContactUs = () => {
   // INIT
+  // main app state
   // form validation
   // error
   // navigation
-  // main app state
+  const { mainappstate, setmainappstate } = useMainApp();
   const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      fullUserName: mainappstate?.fullUserName,
+      email: mainappstate?.email,
+      message: '',
+    },
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
   const navigate = useNavigate();
-  const { setmainappstate } = useMainApp();
 
   // HANDLE QUERY SUMBIT
   const submitQuery = async data => {
-    console.log(data);
-
     fetch('api', {
       method: 'POST',
       headers: {
@@ -38,12 +41,8 @@ const ContactUs = () => {
       },
       body: JSON.stringify(data),
     })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      .then(res => {})
+      .catch(err => {});
   };
 
   return (
