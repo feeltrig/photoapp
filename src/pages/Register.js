@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -6,7 +6,10 @@ import { useMainApp } from '../appstate/appState';
 import { useNavigate } from 'react-router';
 
 const schema = yup.object().shape({
-  fullUserName: yup.string().required('Full Name is required'),
+  fullUserName: yup
+    .string()
+    .matches(/^[a-z ,.'-]+$/i)
+    .required('Full Name is required'),
   userName: yup.string().required(),
   email: yup.string().email().required(),
   mobile: yup.number().min(10).required(),
@@ -19,12 +22,28 @@ const Register = () => {
   // error
   // navigation
   // main app state
-  const { register, handleSubmit, formState } = useForm({
+  const cleanProfile = {
+    fullUserName: '',
+    userName: '',
+    email: '',
+    mobile: null,
+    password: '',
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState,
+    formState: { isSubmitSuccessful },
+  } = useForm({
+    defaultValues: cleanProfile,
     resolver: yupResolver(schema),
   });
   const { errors } = formState;
   const navigate = useNavigate();
   const { setmainappstate } = useMainApp();
+
+  const [userProfile, setuserProfile] = useState(cleanProfile);
 
   // HANDLE REGISTER
   const submitForm = data => {
@@ -38,7 +57,16 @@ const Register = () => {
       );
       return { ...prev, ...data, allowAcces: true };
     });
+
+    setuserProfile(cleanProfile);
   };
+
+  // CLEAR FORM
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset(cleanProfile);
+    }
+  }, [formState, reset]);
 
   return (
     <div className="register">
@@ -53,7 +81,12 @@ const Register = () => {
           {...register('fullUserName')}
           placeholder="First Name..."
         />
-        <p> {errors.fullUserName?.message} </p>
+        <p>
+          {' '}
+          {errors.fullUserName?.message
+            ? 'Full user name is incorrent'
+            : ''}{' '}
+        </p>
 
         {/* username */}
         <label htmlFor="userName">Username</label>

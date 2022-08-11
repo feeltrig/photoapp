@@ -32,9 +32,9 @@ const ProtectedRoutes = () => {
   if (isLogged) {
     return (
       <Routes>
-        <Route path="homepage" element={<Home />}>
-          <Route path="contactus" element={<ContactUs />} />
-        </Route>
+        <Route path="homepage" element={<Home />} />
+        <Route path="contactus" element={<ContactUs />} />
+
         <Route path="userprofile" element={<UserProfile />} />
       </Routes>
     );

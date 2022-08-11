@@ -31,12 +31,12 @@ const LoginPage = () => {
 
     if (name == 'userName') {
       setUserProfile(prev => {
-        return { ...prev, userName: targetvalue };
+        return { ...prev, userName: toString(targetvalue) };
       });
       return 0;
     } else if (name == 'password') {
       setUserProfile(prev => {
-        return { ...prev, password: targetvalue };
+        return { ...prev, password: toString(targetvalue) };
       });
       return 0;
     }
