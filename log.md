@@ -2,9 +2,8 @@
 
 2. set header completely functional
 3. add logo to header
-4. images filteration
-5. show modal for succesfully sent query
-6. better folder structure
+4. show modal for succesfully sent query
+5. better folder structure
 
 <!-- bugs  -->
 
@@ -28,3 +27,4 @@
 <!-- v1.0.10 -->
 
 5. get icon for logout with userphoto or image
+6. images filteration
