@@ -17,19 +17,7 @@ const ProtectedRoutes = () => {
   const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
 
-  // LOGIN CHECKER FUNCTION
-  const isLoggedfn = state => {
-    return state?.userName !== null;
-  };
-
-  // SET ISLOGGED
-  useLayoutEffect(() => {
-    setIsLogged(() => {
-      return isLoggedfn(mainappstate);
-    });
-  }, [mainappstate]);
-
-  if (isLogged) {
+  if (mainappstate.allowAccess) {
     return (
       <Routes>
         <Route path="homepage" element={<Home />} />

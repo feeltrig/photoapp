@@ -38,7 +38,10 @@ header {
     z-index: 20;
 
     .menu-item {
-      text-align: end;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: flex-end;
       padding-inline: 0.5rem;
       padding-block: 0.25rem;
       border-radius: 0.5rem;

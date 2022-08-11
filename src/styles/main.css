@@ -52,7 +52,10 @@ header .menuContainer {
   z-index: 20;
 }
 header .menuContainer .menu-item {
-  text-align: end;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
   padding-inline: 0.5rem;
   padding-block: 0.25rem;
   border-radius: 0.5rem;
@@ -122,6 +125,8 @@ footer .footercomponent:nth-child(3) {
   height: 2rem;
   padding: 1rem;
   border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.048);
+  color: #ffffff;
 }
 .register form button {
   border: none;
@@ -194,6 +199,8 @@ footer .footercomponent:nth-child(3) {
   min-height: calc(100vh - 3rem - 3rem);
   padding-block: 3rem;
   width: 100%;
+  background: rgb(39, 39, 39);
+  color: white;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -211,6 +218,7 @@ footer .footercomponent:nth-child(3) {
   flex-flow: column;
   position: relative;
   box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.137);
+  background: rgba(255, 255, 255, 0.048);
 }
 .homeContainer .photoGrid .photoCard .thumbnail {
   position: relative;
@@ -270,6 +278,13 @@ footer .footercomponent:nth-child(3) {
   color: white;
   border-radius: 0.25rem;
   font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.profilePhotoMenu > img {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=main.css.map */

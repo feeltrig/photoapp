@@ -1,7 +1,10 @@
 <!--  version log -->
 
-5. force user registration/login
-6. set header completely functional
+2. set header completely functional
+3. add logo to header
+4. images filteration
+5. show modal for succesfully sent query
+6. better folder structure
 
 <!-- bugs  -->
 
@@ -20,3 +23,8 @@
 5. set state in localstorage and able to upload profile photo
 6. fetch all images and do pagination
 7. create contact us submit form
+8. force user registration/login
+
+<!-- v1.0.10 -->
+
+5. get icon for logout with userphoto or image

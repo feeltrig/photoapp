@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 // IMPORTS
 // main app state
 // current time of day function
+// default profile photo
 import { useMainApp } from '../appstate/appState';
 import { getTimeOfDay } from '../functions/getTimeOfDay';
+import DefaultPhoto from '../assets/svgs/defaultUserPhoto.svg';
 
 // CLEAN MAIN APP STATE
 import { appState } from '../appstate/appState';
@@ -26,6 +28,8 @@ const Header = () => {
   useLayoutEffect(() => {
     settimeOfDay(getTimeOfDay());
   }, []);
+
+  console.log(mainappstate.profilePhoto);
 
   // HANDLE MENUBAR
   const handleMenu = () => {
@@ -64,35 +68,50 @@ const Header = () => {
   const handleLogout = () => {
     setmainappstate(appState);
     localStorage.clear('userProfile');
-    navigate('/login');
+    navigate('/');
   };
   return (
     <header>
       <nav>
+        {/* logo */}
         <div className="logo">Logo</div>
+
+        {/* time of day and username */}
         {mainappstate.userName !== null && (
           <div className="welcomeMessage">
             Welcome, {userName}, {timeOfDay}
           </div>
         )}
-        <div className="menu" id="menu" dropdown-menu onClick={handleMenu}>
-          Menu
-          <div
-            className="menuContainer"
-            style={menuOpen ? { display: 'flex' } : { display: 'none' }}
-          >
-            {menuobject.map((obj, index) => {
-              return (
-                <div className="menu-item" dropdown-data key={index}>
-                  <Link to={obj.path}>{obj.title}</Link>
-                </div>
-              );
-            })}
-            <div className="menu-item" onClick={handleLogout}>
-              Logout
+
+        {/* menu */}
+        {mainappstate.allowAccess && (
+          <div className="menu" id="menu" dropdown-menu onClick={handleMenu}>
+            Menu
+            <div
+              className="menuContainer"
+              style={menuOpen ? { display: 'flex' } : { display: 'none' }}
+            >
+              {menuobject.map((obj, index) => {
+                return (
+                  <div className="menu-item" dropdown-data key={index}>
+                    <Link to={obj.path}>{obj.title}</Link>
+                  </div>
+                );
+              })}
+              <div
+                className="menu-item profilePhotoMenu"
+                onClick={handleLogout}
+              >
+                {mainappstate.profilePhoto ? (
+                  <img src={mainappstate.profilePhoto} alt="userImage" />
+                ) : (
+                  <img src={DefaultPhoto} alt="userImage" />
+                )}
+                Logout
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );

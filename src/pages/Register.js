@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useMainApp } from '../appstate/appState';
 import { useNavigate } from 'react-router';
+import DefaultPhoto from '.././assets/svgs/defaultUserPhoto.svg';
 
 const schema = yup.object().shape({
   fullUserName: yup
@@ -47,15 +48,24 @@ const Register = () => {
 
   // HANDLE REGISTER
   const submitForm = data => {
-    console.log(data);
-
     setmainappstate(prev => {
       // save state locally
       localStorage.setItem(
         'userProfile',
-        JSON.stringify({ ...prev, ...data, allowAcces: true })
+        JSON.stringify({
+          ...prev,
+          ...data,
+          profilePhoto: DefaultPhoto,
+          allowAccess: true,
+        })
       );
-      return { ...prev, ...data, allowAcces: true };
+
+      return {
+        ...prev,
+        ...data,
+        profilePhoto: DefaultPhoto,
+        allowAccess: true,
+      };
     });
 
     setuserProfile(cleanProfile);
@@ -65,6 +75,7 @@ const Register = () => {
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset(cleanProfile);
+      navigate('/user/homepage');
     }
   }, [formState, reset]);
 
@@ -133,7 +144,7 @@ const Register = () => {
         <p> {errors.password?.message} </p>
 
         {/* submit */}
-        <button type="submit" id="submit">
+        <button type="submit" className="btn" id="submit">
           Register
         </button>
       </form>

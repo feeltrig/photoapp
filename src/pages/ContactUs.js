@@ -85,7 +85,7 @@ const ContactUs = () => {
         <p> {errors.message?.message} </p>
 
         {/* submit */}
-        <button type="submit" id="submit">
+        <button type="submit" className="btn" id="submit">
           Send
         </button>
       </form>

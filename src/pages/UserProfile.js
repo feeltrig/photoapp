@@ -23,6 +23,7 @@ const UserProfile = () => {
   // STORE PROFILE PHOTO LOCALLY
   const handleProfilePhoto = e => {
     const [file] = e.target.files;
+    const profilePic = URL.createObjectURL(file);
 
     setmainappstate(prev => {
       // save locally
@@ -30,11 +31,11 @@ const UserProfile = () => {
         'userProfile',
         JSON.stringify({
           ...prev,
-          profilePhoto: URL.createObjectURL(file),
+          profilePhoto: profilePic,
         })
       );
 
-      return { ...prev, profilePhoto: URL.createObjectURL(file) };
+      return { ...prev, profilePhoto: profilePic };
     });
   };
 

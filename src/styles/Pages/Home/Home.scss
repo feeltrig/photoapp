@@ -3,6 +3,8 @@
   min-height: $mainContentHeight;
   padding-block: 3rem;
   width: 100%;
+  background: $black1;
+  color: white;
   // overflow-y: scroll;
 
   // @include hideScrollBar();
@@ -18,7 +20,7 @@
     width: 80%;
     gap: 1rem;
     margin-inline: 10rem;
-    grid-template-columns: repeat(auto-fill, minmax(10rem,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 
     // card
     .photoCard {
@@ -26,6 +28,7 @@
       flex-flow: column;
       position: relative;
       @include shadowMild(rgba(0, 0, 0, 0.137));
+      background: $black2;
 
       .thumbnail {
         position: relative;

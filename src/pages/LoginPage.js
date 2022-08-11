@@ -8,17 +8,16 @@ const LoginPage = () => {
   // navigate
   // main app state
   const cleanLoginProfile = { userName: '', password: '' };
-
   const [userProfile, setUserProfile] = useState(cleanLoginProfile);
-
   const navigate = useNavigate();
-  const { setmainappstate } = useMainApp();
+  const { mainappstate, setmainappstate } = useMainApp();
 
   // GET STATE FROM LOCAL STORAGE
   useEffect(() => {
     const appstate = localStorage.getItem('userProfile');
     if (appstate) {
       setmainappstate(JSON.parse(appstate));
+      navigate('/user/homepage');
     }
   }, []);
 
