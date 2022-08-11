@@ -1,5 +1,5 @@
 .register {
-  height: 100%;
+  min-height: $mainContentHeight;
 
   @include flexcenter();
 

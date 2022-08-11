@@ -1,3 +1,4 @@
-.mainContent{
-    height: $mainContentHeight;
+.mainContent {
+  position: relative;
+  min-height: $mainContentHeight;
 }

@@ -1,28 +1,26 @@
 @import './config';
 @import './resets';
 
-
-
 @import './Header/Header.scss';
 @import './Footer/Footer.scss';
 @import './MainContent/mainContent.scss';
 @import './Register/register.scss';
 @import './Pages/UserProfile/UserProfile.scss';
+@import './Pages/Home/Home.scss';
 @import './LoginPage/loginPage.scss';
+@import './AppContainer/appContainer.scss';
 
 // global styles
 
-.btn{
-        border: none;
-        width: 10rem;
-        padding-inline: 0.5rem;
-        padding-block: 0.5rem;
-        border-radius: 0.5rem;
-        border-radius: 0.25rem;
-        background: rgb(69, 69, 69);
-        color: white;
-        border-radius: 0.25rem;
-        font-weight: bold;
-
-
+.btn {
+  border: none;
+  width: 10rem;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  border-radius: 0.5rem;
+  border-radius: 0.25rem;
+  background: rgb(69, 69, 69);
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: bold;
 }

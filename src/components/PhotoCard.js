@@ -4,11 +4,14 @@ const PhotoCard = ({ imageObj }) => {
   // INIT
   const { albumId, id, title, url, thumbnailUrl } = imageObj;
 
+  console.log(url);
+
   return (
     <div className="photoCard">
-      <div className="thumbnail"></div>
-      <h3>{title}</h3>
-      <p>albumId: {albumId}</p>
+      <div className="thumbnail">
+        <img src={thumbnailUrl} alt="some photo" />
+      </div>
+      <h4>{title}</h4>
     </div>
   );
 };

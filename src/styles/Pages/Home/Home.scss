@@ -1,0 +1,62 @@
+.homeContainer {
+  position: relative;
+  min-height: $mainContentHeight;
+  padding-block: 3rem;
+  // overflow-y: scroll;
+
+  // @include hideScrollBar();
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  // IMAGES
+  .photoGrid {
+    display: grid;
+    margin-block: 3rem;
+    gap: 1rem;
+    margin-inline: 10rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+
+    // card
+    .photoCard {
+      display: flex;
+      flex-flow: column;
+      position: relative;
+      @include shadowMild(rgba(0, 0, 0, 0.137));
+
+      .thumbnail {
+        position: relative;
+        height: 10rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      h4 {
+        @include resetmp();
+        padding-inline: 0.5rem;
+        padding-block: 1rem;
+      }
+    }
+  }
+
+  .pageButtonContainer {
+    display: flex;
+    gap: 1rem;
+
+    & > div {
+      @include flexcenter();
+      width: 1rem;
+      height: 1rem;
+      padding: 1rem;
+      // padding-inline: 1.5rem;
+      // padding-block: 1rem;
+      box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.068);
+    }
+  }
+}
