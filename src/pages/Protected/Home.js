@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import PhotoCard from '../components/PhotoCard';
-import PageButton from '../components/PageButton';
+import PhotoCard from '../../components/PhotoCard';
+import PageButton from '../../components/PageButton';
 
 // ALL DATA
 // import dbData from '../fakeapi/db.json';

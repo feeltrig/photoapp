@@ -26,6 +26,7 @@ header {
   padding-block: 0.25rem;
   box-sizing: border-box;
   background: #000;
+  flex-wrap: wrap;
 }
 header nav {
   width: 100%;
@@ -251,6 +252,7 @@ footer .footercomponent:nth-child(3) {
 .homeContainer .photoFilterContainer {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .homeContainer .photoFilterContainer input {
   border: transparent;

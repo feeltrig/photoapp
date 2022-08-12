@@ -4,9 +4,9 @@ import { useMainApp } from '../appstate/appState';
 
 // PAGES
 import ErrorPage from './ErrorPage';
-import ContactUs from './ContactUs';
-import UserProfile from './UserProfile';
-import Home from './Home';
+import ContactUs from './Protected/ContactUs';
+import UserProfile from './Protected/UserProfile';
+import Home from './Protected/Home';
 
 const ProtectedRoutes = () => {
   // INITIALIZATIONS

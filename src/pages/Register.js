@@ -42,33 +42,25 @@ const Register = () => {
   });
   const { errors } = formState;
   const navigate = useNavigate();
-  const { setmainappstate } = useMainApp();
+  const { mainappstate, setmainappstate } = useMainApp();
 
   const [userProfile, setuserProfile] = useState(cleanProfile);
 
   // HANDLE REGISTER
   const submitForm = data => {
-    setmainappstate(prev => {
-      // save state locally
-      localStorage.setItem(
-        'userProfile',
-        JSON.stringify({
-          ...prev,
-          ...data,
-          profilePhoto: DefaultPhoto,
-          allowAccess: true,
-        })
-      );
-
-      return {
-        ...prev,
+    // save state locally
+    localStorage.setItem(
+      'userProfile',
+      JSON.stringify({
+        ...mainappstate,
         ...data,
         profilePhoto: DefaultPhoto,
         allowAccess: true,
-      };
-    });
+      })
+    );
 
     setuserProfile(cleanProfile);
+    navigate('/');
   };
 
   // CLEAR FORM

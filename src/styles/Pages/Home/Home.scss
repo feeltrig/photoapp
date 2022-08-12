@@ -16,6 +16,7 @@
   .photoFilterContainer {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 
     input {
       border: transparent;

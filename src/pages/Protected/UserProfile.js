@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useMainApp } from '../appstate/appState';
+import { useMainApp } from '../../appstate/appState';
 
 const UserProfile = () => {
   // INIT
@@ -40,6 +40,8 @@ const UserProfile = () => {
             onChange={handleProfilePhoto}
           />
         </div>
+
+        {/* profile photo */}
         <div className="profilePhoto">
           {mainappstate.profilePhoto && (
             <img src={mainappstate.profilePhoto} alt="userphoto" />

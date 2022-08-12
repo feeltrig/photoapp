@@ -44,18 +44,18 @@ const LoginPage = () => {
         parsedProfile.password == userProfile.password
       ) {
         setmainappstate(prev => {
-          return { ...prev, allowAccess: true };
+          return { ...parsedProfile, allowAccess: true };
         });
 
         setUserProfile(cleanLoginProfile);
-        navigate('user/homepage');
+        navigate('/user/homepage');
       } else {
         alert('Please input corrent info');
         setUserProfile(cleanLoginProfile);
         return;
       }
     } else {
-      alert('Please input correct info');
+      alert('Please register before login in');
       setUserProfile(cleanLoginProfile);
       return;
     }
