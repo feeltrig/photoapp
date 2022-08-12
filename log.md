@@ -1,9 +1,6 @@
 <!--  version log -->
 
-2. set header completely functional
-3. add logo to header
-4. show modal for succesfully sent query
-5. better folder structure
+3. better folder structure
 
 <!-- bugs  -->
 
@@ -28,3 +25,10 @@
 
 5. get icon for logout with userphoto or image
 6. images filteration
+
+<!-- v1.0.11 -->
+
+3. add logo to header
+4. show modal for succesfully sent query
+5. fetch from api to show images
+6. set header completely functional

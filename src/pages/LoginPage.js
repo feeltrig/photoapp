@@ -12,15 +12,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { mainappstate, setmainappstate } = useMainApp();
 
-  // GET STATE FROM LOCAL STORAGE
-  useEffect(() => {
-    const appstate = localStorage.getItem('userProfile');
-    if (appstate) {
-      setmainappstate(JSON.parse(appstate));
-      navigate('/user/homepage');
-    }
-  }, []);
-
   // HANDLE INPUT
   const handleInput = e => {
     const name = e.target.name;
@@ -52,7 +43,6 @@ const LoginPage = () => {
         parsedProfile.userName == userProfile.userName &&
         parsedProfile.password == userProfile.password
       ) {
-        alert('Login succesfull');
         setmainappstate(prev => {
           return { ...prev, allowAccess: true };
         });
@@ -61,13 +51,14 @@ const LoginPage = () => {
         navigate('user/homepage');
       } else {
         alert('Please input corrent info');
+        setUserProfile(cleanLoginProfile);
+        return;
       }
     } else {
-      alert('Please input corrent info');
+      alert('Please input correct info');
+      setUserProfile(cleanLoginProfile);
+      return;
     }
-
-    // cleaner
-    setUserProfile(cleanLoginProfile);
   };
 
   return (

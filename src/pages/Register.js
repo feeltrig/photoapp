@@ -9,7 +9,7 @@ import DefaultPhoto from '.././assets/svgs/defaultUserPhoto.svg';
 const schema = yup.object().shape({
   fullUserName: yup
     .string()
-    .matches(/^[a-z ,.'-]+$/i)
+    .matches(/^[a-zA-Z]{1,}\s([a-zA-Z]{1,}\s)?[a-zA-Z]{1,}$/i)
     .required('Full Name is required'),
   userName: yup.string().required(),
   email: yup.string().email().required(),

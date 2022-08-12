@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // IMPORTS
@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMainApp } from '../appstate/appState';
 import { getTimeOfDay } from '../functions/getTimeOfDay';
 import DefaultPhoto from '../assets/svgs/defaultUserPhoto.svg';
+import HeaderLogo from '../assets/svgs/HeaderLogo.svg';
 
 // CLEAN MAIN APP STATE
 import { appState } from '../appstate/appState';
@@ -32,29 +33,36 @@ const Header = () => {
   // HANDLE MENUBAR
   const handleMenu = () => {
     setmenuOpen(prev => {
-      return !prev;
+      if (prev) {
+        return false;
+      } else {
+        return true;
+      }
     });
   };
 
   // CLICK OUTSIDE TO CLOSE MENU
-  // window.addEventListener('click', e => {
-  //   console.log(e.target.closest('#menu') == null);
+  useEffect(() => {
+    const closeMenu = e => {
+      const classtemp = e.path[0].className;
 
-  //   if (e.target.className !== 'menu') {
-  //     if (
-  //       e.target.className !== 'menu-item' &&
-  //       e.target.closest('#menu') == null
-  //     ) {
-  //       setmenuOpen(false);
-  //       return;
-  //     } else {
-  //       return;
-  //     }
-  //   } else if (e.target.className == 'menu') {
-  //     setmenuOpen(true);
-  //     return;
-  //   }
-  // });
+      if (classtemp == 'menu') {
+        return;
+      } else if (classtemp == 'menuContainer' || classtemp == 'menu-item') {
+        setmenuOpen(true);
+        return;
+      } else {
+        setmenuOpen(false);
+        return;
+      }
+    };
+
+    document.body.addEventListener('click', closeMenu);
+
+    return () => {
+      document.body.removeEventListener('click', closeMenu);
+    };
+  }, []);
 
   const menuobject = [
     { path: '/user/homepage', title: 'Home' },
@@ -65,14 +73,16 @@ const Header = () => {
   // LOGOUT OUT
   const handleLogout = () => {
     setmainappstate(appState);
-    localStorage.clear('userProfile');
     navigate('/');
   };
+
   return (
     <header>
       <nav>
         {/* logo */}
-        <div className="logo">Logo</div>
+        <div className="logo">
+          <img src={HeaderLogo} alt="" />
+        </div>
 
         {/* time of day and username */}
         {mainappstate.userName !== null && (
@@ -83,7 +93,7 @@ const Header = () => {
 
         {/* menu */}
         {mainappstate.allowAccess && (
-          <div className="menu" id="menu" dropdown-menu onClick={handleMenu}>
+          <div className="menu" onClick={handleMenu}>
             Menu
             <div
               className="menuContainer"
@@ -91,21 +101,20 @@ const Header = () => {
             >
               {menuobject.map((obj, index) => {
                 return (
-                  <div className="menu-item" dropdown-data key={index}>
+                  <div className="menu-item" key={index}>
                     <Link to={obj.path}>{obj.title}</Link>
                   </div>
                 );
               })}
-              <div
-                className="menu-item profilePhotoMenu"
-                onClick={handleLogout}
-              >
-                {mainappstate.profilePhoto ? (
-                  <img src={mainappstate.profilePhoto} alt="userImage" />
-                ) : (
-                  <img src={DefaultPhoto} alt="userImage" />
-                )}
-                Logout
+              <div className="menu-item profilePhotoMenu">
+                <Link onClick={handleLogout} to={'/'}>
+                  {mainappstate.profilePhoto ? (
+                    <img src={mainappstate.profilePhoto} alt="userImage" />
+                  ) : (
+                    <img src={DefaultPhoto} alt="userImage" />
+                  )}
+                  Logout
+                </Link>
               </div>
             </div>
           </div>

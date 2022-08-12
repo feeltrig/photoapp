@@ -4,7 +4,7 @@ import PhotoCard from '../components/PhotoCard';
 import PageButton from '../components/PageButton';
 
 // ALL DATA
-import dbData from '../fakeapi/db.json';
+// import dbData from '../fakeapi/db.json';
 
 const Home = () => {
   // INIT
@@ -15,35 +15,47 @@ const Home = () => {
   // searched query
   // search by
   // error modal
-  const [allImages, setallImages] = useState(dbData);
+  // loading
+  const [allImages, setallImages] = useState([]);
   const [currentPage, setcurrentPage] = useState(1);
   const [paginatedImages, setpaginatedImages] = useState([]);
   const [pageButtons, setpageButtons] = useState([]);
   const [searchQuery, setsearchQuery] = useState('');
-  const [searchBy, setsearchBy] = useState({ id: false, albumId: false });
+  const clearSearchBy = { id: false, albumId: false };
+  const [searchBy, setsearchBy] = useState(clearSearchBy);
   const [errorModalOpen, seterrorModalOpen] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
 
   // FETCH DATA
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     const data = fetch(process.env.FETCH_IMAGES_API);
-  //     const response = await data.json();
+  useEffect(() => {
+    const fetchImages = async () => {
+      const data = await fetch(process.env.REACT_APP_FETCH_IMAGES_API);
+      const response = await data.json();
 
-  //     if (data.status < 403) {
-  //       return response;
-  //     } else {
-  //       alert('Connection error');
-  //     }
-  //   };
+      if (data.status < 403) {
+        return response;
+      } else {
+        alert('Connection error');
+        return;
+      }
+    };
 
-  //   fetchImages()
-  //     .then(result => {
-  //       setallImages(result);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
+    fetchImages()
+      .then(res => {
+        setallImages(res);
+        handlePagination(allImages, 20);
+        seterrorModalOpen(false);
+        setisLoading(false);
+      })
+      .catch(err => {
+        alert('Connectionerror');
+        return;
+      });
+  }, []);
+
+  useEffect(() => {
+    handlePagination(allImages, 20);
+  }, [allImages]);
 
   // PAGINATION AND PAGE BUTTON CREATION
   const handlePagination = (imageArr, size) => {
@@ -71,9 +83,7 @@ const Home = () => {
   };
 
   // PAGINATE AT PAGE LOAD
-  useEffect(() => {
-    handlePagination(allImages, 20);
-  }, []);
+  useEffect(() => {}, []);
 
   // FILTERATION
   const handleSearch = (allImages, searchedQuery) => {
@@ -88,7 +98,10 @@ const Home = () => {
     const cond3 =
       tempcopy.length > 0 && typeof searchQuery == 'number' && searchBy.albumId;
 
-    if (cond1) {
+    if (cond1 && searchQuery == '') {
+      handlePagination(allImages, 20);
+      return;
+    } else if (cond1) {
       const filtered = tempcopy.filter(objs => {
         return objs.title.includes(searchedQuery);
       });
@@ -148,7 +161,11 @@ const Home = () => {
         <button
           className="btn"
           onClick={() => {
-            setsearchBy({ id: false, albumId: true });
+            if (!searchBy.albumId) {
+              setsearchBy({ id: false, albumId: true });
+            } else if (searchBy.id) {
+              setsearchBy(clearSearchBy);
+            }
           }}
           style={
             searchBy.albumId ? { background: 'yellow', color: 'black' } : {}
@@ -159,7 +176,11 @@ const Home = () => {
         <button
           className="btn"
           onClick={() => {
-            setsearchBy({ id: true, albumId: false });
+            if (!searchBy.id) {
+              setsearchBy({ id: true, albumId: false });
+            } else if (searchBy.id) {
+              setsearchBy(clearSearchBy);
+            }
           }}
           style={searchBy.id ? { background: 'yellow', color: 'black' } : {}}
         >
@@ -170,21 +191,27 @@ const Home = () => {
       {/* gallery */}
 
       {/* error modal */}
-      <div
-        className="errorModal"
-        style={errorModalOpen ? { display: 'flex' } : { display: 'none' }}
-      >
-        <h2>Not found</h2>
-        <button
-          className="btn"
-          onClick={() => {
-            seterrorModalOpen(false);
-            setsearchQuery('');
-          }}
-        >
-          Go Back
-        </button>
-      </div>
+      {errorModalOpen && !isLoading && (
+        <div className="errorModal">
+          <h2>Not found</h2>
+          <button
+            className="btn"
+            onClick={() => {
+              seterrorModalOpen(false);
+              setsearchQuery('');
+              handleSearch(allImages, '');
+            }}
+          >
+            Go Back
+          </button>
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="errorModal">
+          <h2>Loading...</h2>
+        </div>
+      )}
 
       {/* main photos */}
       {!errorModalOpen && (

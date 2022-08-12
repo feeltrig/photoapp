@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -20,6 +20,7 @@ const ContactUs = () => {
   // form validation
   // error
   // navigation
+  // submit error
   const { mainappstate, setmainappstate } = useMainApp();
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
@@ -31,6 +32,7 @@ const ContactUs = () => {
   });
   const { errors } = formState;
   const navigate = useNavigate();
+  const [submitError, setsubmitError] = useState('');
 
   // HANDLE QUERY SUMBIT
   const submitQuery = async data => {
@@ -41,7 +43,17 @@ const ContactUs = () => {
       },
       body: JSON.stringify(data),
     })
-      .then(res => {})
+      .then(res => {
+        if (res.status < 403) {
+          setsubmitError('Successfully submitted');
+        } else {
+          setsubmitError('Please try again later');
+        }
+
+        setTimeout(() => {
+          setsubmitError('');
+        }, 5000);
+      })
       .catch(err => {});
   };
 
@@ -88,6 +100,11 @@ const ContactUs = () => {
           Send
         </button>
       </form>
+
+      <h3 style={{ position: 'absolute', bottom: '5rem' }}>
+        {submitError == 'Please try again later' && 'Please try again later'}
+        {submitError == 'Successfully submitted' && 'Successfully submitted'}
+      </h3>
     </div>
   );
 };
