@@ -26,8 +26,7 @@ const Home = () => {
   const [errorModalOpen, seterrorModalOpen] = useState(false);
   const [isLoading, setisLoading] = useState(true);
 
-  // FETCH DATA
-  useEffect(() => {
+  const getData = () => {
     const fetchImages = async () => {
       const data = await fetch(process.env.REACT_APP_FETCH_IMAGES_API);
       const response = await data.json();
@@ -36,6 +35,7 @@ const Home = () => {
         return response;
       } else {
         alert('Connection error');
+        setisLoading(false);
         return;
       }
     };
@@ -51,6 +51,11 @@ const Home = () => {
         alert('Connectionerror');
         return;
       });
+  };
+
+  // FETCH DATA
+  useEffect(() => {
+    getData();
   }, []);
 
   useEffect(() => {
@@ -163,8 +168,10 @@ const Home = () => {
           onClick={() => {
             if (!searchBy.albumId) {
               setsearchBy({ id: false, albumId: true });
-            } else if (searchBy.id) {
+              return;
+            } else if (searchBy.albumId) {
               setsearchBy(clearSearchBy);
+              return;
             }
           }}
           style={
@@ -178,8 +185,10 @@ const Home = () => {
           onClick={() => {
             if (!searchBy.id) {
               setsearchBy({ id: true, albumId: false });
+              return;
             } else if (searchBy.id) {
               setsearchBy(clearSearchBy);
+              return;
             }
           }}
           style={searchBy.id ? { background: 'yellow', color: 'black' } : {}}
@@ -207,7 +216,22 @@ const Home = () => {
         </div>
       )}
 
-      {isLoading && (
+      {/* no images error */}
+      {allImages.length < 1 && (
+        <div className="errorModal">
+          <h2>No images to Display</h2>
+          <button
+            className="btn"
+            onClick={() => {
+              getData();
+            }}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
+      {isLoading && !errorModalOpen && (
         <div className="errorModal">
           <h2>Loading...</h2>
         </div>
