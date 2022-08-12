@@ -1,11 +1,5 @@
 <!--  version log -->
 
-3. better folder structure
-
-<!-- bugs  -->
-
-1. menu click outside closing
-
 <!-- unables -->
 
 1. cannot fetch image from localstorage
@@ -32,3 +26,4 @@
 4. show modal for succesfully sent query
 5. fetch from api to show images
 6. set header completely functional
+7. better folder structure
